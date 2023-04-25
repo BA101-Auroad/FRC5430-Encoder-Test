@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
     switch (m_autoSelected) {
       case kCustomAuto:
       motor1.getSelectedSensorPosition();
-      
+    
       
       
         // Put custom auto code here
@@ -107,13 +107,49 @@ public class Robot extends TimedRobot {
 
     motor1.set(ControlMode.PercentOutput, joystick0.getRawAxis(1));
     
+    
+
 
     if(joystick0.getRawButtonPressed(1)){
-      motor1.setSelectedSensorPosition(1);
+      motor1.setSelectedSensorPosition(0); //Set SensorValue to 0, not motor
       //motor1.getSelectedSensorVelocity(1);
-    }
+      if (joystick0.getRawButtonPressed(2)){ 
+     motor1.getSelectedSensorPosition();
+      }
+         if(motor1.getSelectedSensorPosition()<0){
+          motor1.set(ControlMode.PercentOutput, 0.1);
+         }
+          else if(motor1.getSelectedSensorPosition()<0){
+            motor1.set(ControlMode.PercentOutput, 0);
+          }
+          
+        
+        
+         else if(motor1.getSelectedSensorPosition()>0){
+          motor1.set(ControlMode.PercentOutput, -0.1);
+         }
+      
 
-  }
+     }
+        
+      
+      // (motor1.getSelectedSensorPosition() < 1){
+        //motor1.set(ControlMode.PercentOutput, 0.1);
+      }
+
+       //motor1.set(ControlMode.PercentOutput, 0);
+         
+
+       //else if(motor1.getSelectedSensorPosition() > 1){
+          //motor1.set(ControlMode.PercentOutput, -0.1);
+        
+      
+     
+    
+    
+    
+
+  
 
   /** This function is called once when the robot is disabled. */
   @Override
